@@ -246,7 +246,7 @@ class GPT(nn.Module):
                 kv_value = kv_cache[key]
                 next_layer_input, new_kv_value = block(x, x[:,-1,:].unsqueeze(1), kv_value)
             new_key = tuple(x.flatten().tolist())
-            # self.kv_caches[transformer_layer][new_key] = new_kv_value
+            self.kv_caches[transformer_layer][new_key] = new_kv_value
             x = next_layer_input
             transformer_layer += 1
 
